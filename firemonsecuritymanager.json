@@ -1,0 +1,435 @@
+{
+    "appid": "2ade0c67-7b1e-43ad-bc74-b7158688d4d0",
+    "name": "FireMon Security Manager",
+    "description": "This App exposes various FireMon Security Manager API endpoints as actions",
+    "type": "endpoint",
+    "product_vendor": "FireMon",
+    "logo": "firemonsecuritymanager.svg",
+    "logo_dark": "firemonsecuritymanager_dark.svg",
+    "product_name": "Security Manager",
+    "python_version": "3",
+    "product_version_regex": ".*",
+    "publisher": "Splunk Community",
+	"contributors": [
+      {
+        "name": "Jeff Berry"
+      }
+    ],
+    "license": "Copyright (c) Splunk Community, 2021",
+    "app_version": "1.0.0",
+    "utctime_updated": "2021-11-24T19:07:17.062644Z",
+    "package_name": "phantom_firemonsecuritymanager",
+    "main_module": "firemonsecuritymanager_connector.py",
+    "min_phantom_version": "4.10.3.51237",
+    "app_wizard_version": "1.0.0",
+    "configuration": {
+        "base_url": {
+            "description": "API endpoint (e.g., https://host/securitymanager/api)",
+            "data_type": "string",
+            "required": true,
+            "value_list": [],
+            "default": "",
+            "order": 0
+        },
+        "username": {
+            "description": "Username",
+            "data_type": "string",
+            "required": true,
+            "value_list": [],
+            "default": "",
+            "order": 2
+        },
+        "password": {
+            "description": "Password",
+            "data_type": "password",
+            "required": true,
+            "order": 3
+        },
+        "verify_server_cert": {
+            "description": "Verify server certificate",
+            "data_type": "boolean",
+            "required": true,
+            "default": false,
+            "order": 4
+        }
+    },
+    "actions": [
+        {
+            "action": "test connectivity",
+            "identifier": "test_connectivity",
+            "description": "Validate the asset configuration for connectivity using supplied configuration",
+            "verbose": "The Firemon API version endpoint is used for the test connectivity action",
+            "type": "test",
+            "read_only": true,
+            "parameters": {},
+            "output": [],
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "assign devicegroup",
+            "identifier": "assign_devicegroup",
+            "description": "Assign a Device to a DeviceGroup",
+            "verbose": "Assign a Device to a DeviceGroup",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "firemon_domain_id": {
+                    "description": "Domain ID",
+                    "data_type": "numeric",
+                    "required": true,
+                    "primary": true,
+                    "value_list": [],
+                    "default": "",
+                    "order": 0
+                },
+                "firemon_device_group_id": {
+                    "description": "DeviceGroup ID",
+                    "data_type": "numeric",
+                    "required": true,
+                    "primary": true,
+                    "value_list": [],
+                    "default": "",
+                    "order": 1
+                },
+                "firemon_device_id": {
+                    "description": "Device ID",
+                    "data_type": "numeric",
+                    "required": true,
+                    "primary": true,
+                    "value_list": [],
+                    "default": "",
+                    "order": 2
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.firemon_domain_id",
+                    "data_type": "numeric",
+                    "column_name": "firemon_domain_id",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.parameter.firemon_device_group_id",
+                    "data_type": "numeric",
+                    "column_name": "firemon_device_group_id",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.parameter.firemon_device_id",
+                    "data_type": "numeric",
+                    "column_name": "firemon_device_id",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+				{
+                    "data_path": "action_result.summary.*.message",
+                    "data_type": "string"
+                },
+				{
+                    "data_path": "action_result.data.*.message",
+                    "data_type": "string",
+                    "column_name": "message",
+                    "column_order": 4
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "remove devicegroup",
+            "identifier": "remove_devicegroup",
+            "description": "Remove a Device from a DeviceGroup",
+            "verbose": "Remove a Device from a DeviceGroup",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "firemon_domain_id": {
+                    "description": "Domain ID",
+                    "data_type": "numeric",
+                    "required": true,
+                    "primary": true,
+                    "value_list": [],
+                    "default": "",
+                    "order": 0
+                },
+                "firemon_device_group_id": {
+                    "description": "DeviceGroup ID",
+                    "data_type": "numeric",
+                    "required": true,
+                    "primary": true,
+                    "value_list": [],
+                    "default": "",
+                    "order": 1
+                },
+                "firemon_device_id": {
+                    "description": "Device ID",
+                    "data_type": "numeric",
+                    "required": true,
+                    "primary": true,
+                    "value_list": [],
+                    "default": "",
+                    "order": 2
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.firemon_domain_id",
+                    "data_type": "numeric",
+                    "column_name": "firemon_domain_id",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.parameter.firemon_device_group_id",
+                    "data_type": "numeric",
+                    "column_name": "firemon_device_group_id",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.parameter.firemon_device_id",
+                    "data_type": "numeric",
+                    "column_name": "firemon_device_id",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+				{
+                    "data_path": "action_result.summary.*.message",
+                    "data_type": "string"
+                },
+				{
+                    "data_path": "action_result.data.*.message",
+                    "data_type": "string",
+                    "column_name": "message",
+                    "column_order": 4
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "get devicegroup",
+            "identifier": "get_devicegroup",
+            "description": "Get a DeviceGroup by ID",
+            "verbose": "Get a DeviceGroup by ID",
+            "type": "investigate",
+            "read_only": true,
+            "parameters": {
+                "firemon_domain_id": {
+                    "description": "Domain ID",
+                    "data_type": "numeric",
+                    "required": true,
+                    "primary": true,
+                    "value_list": [],
+                    "default": "",
+                    "order": 0
+                },
+                "firemon_device_group_id": {
+                    "description": "DeviceGroup ID",
+                    "data_type": "numeric",
+                    "required": true,
+                    "primary": true,
+                    "value_list": [],
+                    "default": "",
+                    "order": 1
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.firemon_domain_id",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.parameter.firemon_device_group_id",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 7
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+				{
+                    "data_path": "action_result.summary.*.id",
+                    "data_type": "numeric"
+                },
+				{
+                    "data_path": "action_result.summary.*.domainId",
+                    "data_type": "string"
+                },
+				{
+                    "data_path": "action_result.summary.*.name",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                },
+				{
+                    "data_path": "action_result.data.*.id",
+                    "data_type": "string",
+                    "column_name": "id",
+                    "column_order": 0
+                },
+				{
+                    "data_path": "action_result.data.*.domainId",
+                    "data_type": "string",
+                    "column_name": "domainId",
+                    "column_order": 1
+                },
+				{
+                    "data_path": "action_result.data.*.name",
+                    "data_type": "string",
+                    "column_name": "name",
+                    "column_order": 2
+                },
+				{
+                    "data_path": "action_result.data.*.securityConcernIndex",
+                    "data_type": "string",
+                    "column_name": "securityConcernIndex",
+                    "column_order": 3
+                },
+				{
+                    "data_path": "action_result.data.*.analysis",
+                    "data_type": "string",
+                    "column_name": "analysis",
+                    "column_order": 4
+                },
+				{
+                    "data_path": "action_result.data.*.childDeviceGroups",
+                    "data_type": "string",
+                    "column_name": "childDeviceGroups",
+                    "column_order": 5
+                },
+				{
+                    "data_path": "action_result.data.*.childDevices",
+                    "data_type": "string",
+                    "column_name": "childDevices",
+                    "column_order": 6
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        },
+        {
+            "action": "get domain",
+            "identifier": "get_domain",
+            "description": "Get a domain by ID",
+            "verbose": "Get a domain by ID",
+            "type": "investigate",
+            "read_only": true,
+            "parameters": {
+                "firemon_domain_id": {
+                    "description": "Domain ID",
+                    "data_type": "numeric",
+                    "required": true,
+                    "primary": true,
+                    "value_list": [],
+                    "default": "",
+                    "order": 0
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.firemon_domain_id",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 3
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                },
+				{
+                    "data_path": "action_result.summary.*.id",
+                    "data_type": "numeric"
+                },
+				{
+                    "data_path": "action_result.summary.*.name",
+                    "data_type": "string"
+                },
+				{
+                    "data_path": "action_result.data.*.id",
+                    "data_type": "string",
+                    "column_name": "id",
+                    "column_order": 0
+                },
+				{
+                    "data_path": "action_result.data.*.name",
+                    "data_type": "string",
+                    "column_name": "name",
+                    "column_order": 1
+
+                },
+				{
+                    "data_path": "action_result.data.*.description",
+                    "data_type": "string",
+                    "column_name": "description",
+                    "column_order": 2
+                }
+            ],
+            "render": {
+                "type": "table"
+            },
+            "versions": "EQ(*)"
+        }
+    ]
+}
