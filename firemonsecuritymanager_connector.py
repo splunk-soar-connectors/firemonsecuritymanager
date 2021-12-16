@@ -7,10 +7,10 @@
 # Python 3 Compatibility imports
 from __future__ import print_function, unicode_literals
 
-import sys
-
 # Phantom App imports
 import json
+import sys
+
 import phantom.app as phantom
 import requests
 from bs4 import BeautifulSoup
@@ -406,6 +406,7 @@ class FiremonSecurityManagerConnector(BaseConnector):
 
 def main():
     import argparse
+
     import pudb
 
     pudb.set_trace()
