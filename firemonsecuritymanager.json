@@ -20,8 +20,7 @@
     "utctime_updated": "2021-11-24T19:07:17.062644Z",
     "package_name": "phantom_firemonsecuritymanager",
     "main_module": "firemonsecuritymanager_connector.py",
-    "min_phantom_version": "4.10.3.51237",
-    "app_wizard_version": "1.0.0",
+    "min_phantom_version": "5.0.0",
     "configuration": {
         "base_url": {
             "description": "API endpoint (e.g., https://host/securitymanager/api)",
@@ -58,7 +57,7 @@
             "action": "test connectivity",
             "identifier": "test_connectivity",
             "description": "Validate the asset configuration for connectivity using supplied configuration",
-            "verbose": "The Firemon API version endpoint is used for the test connectivity action",
+            "verbose": "The Firemon API version endpoint is used for the test connectivity action.",
             "type": "test",
             "read_only": true,
             "parameters": {},
@@ -69,7 +68,7 @@
             "action": "assign devicegroup",
             "identifier": "assign_devicegroup",
             "description": "Assign a Device to a DeviceGroup",
-            "verbose": "Assign a Device to a DeviceGroup",
+            "verbose": "Assign a Device to a DeviceGroup.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -103,6 +102,28 @@
             },
             "output": [
                 {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+				{
+                    "data_path": "action_result.summary.*.message",
+                    "data_type": "string"
+                },
+				{
+                    "data_path": "action_result.data.*.message",
+                    "data_type": "string",
+                    "column_name": "message",
+                    "column_order": 4
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                },
+                {
                     "data_path": "action_result.parameter.firemon_domain_id",
                     "data_type": "numeric",
                     "column_name": "firemon_domain_id",
@@ -125,28 +146,6 @@
                     "data_type": "string",
                     "column_name": "status",
                     "column_order": 3
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string"
-                },
-				{
-                    "data_path": "action_result.summary.*.message",
-                    "data_type": "string"
-                },
-				{
-                    "data_path": "action_result.data.*.message",
-                    "data_type": "string",
-                    "column_name": "message",
-                    "column_order": 4
-                },
-                {
-                    "data_path": "summary.total_objects",
-                    "data_type": "numeric"
-                },
-                {
-                    "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
                 }
             ],
             "render": {
@@ -158,7 +157,7 @@
             "action": "remove devicegroup",
             "identifier": "remove_devicegroup",
             "description": "Remove a Device from a DeviceGroup",
-            "verbose": "Remove a Device from a DeviceGroup",
+            "verbose": "Remove a Device from a DeviceGroup.",
             "type": "generic",
             "read_only": false,
             "parameters": {
@@ -192,6 +191,22 @@
             },
             "output": [
                 {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+				{
+                    "data_path": "action_result.summary.*.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                },
+                {
                     "data_path": "action_result.parameter.firemon_domain_id",
                     "data_type": "numeric",
                     "column_name": "firemon_domain_id",
@@ -216,26 +231,10 @@
                     "column_order": 3
                 },
                 {
-                    "data_path": "action_result.message",
-                    "data_type": "string"
-                },
-				{
-                    "data_path": "action_result.summary.*.message",
-                    "data_type": "string"
-                },
-				{
                     "data_path": "action_result.data.*.message",
                     "data_type": "string",
                     "column_name": "message",
                     "column_order": 4
-                },
-                {
-                    "data_path": "summary.total_objects",
-                    "data_type": "numeric"
-                },
-                {
-                    "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric"
                 }
             ],
             "render": {
@@ -247,7 +246,7 @@
             "action": "get devicegroup",
             "identifier": "get_devicegroup",
             "description": "Get a DeviceGroup by ID",
-            "verbose": "Get a DeviceGroup by ID",
+            "verbose": "Get a DeviceGroup by ID.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -280,20 +279,14 @@
                     "data_type": "numeric"
                 },
                 {
-                    "data_path": "action_result.status",
-                    "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 7
-                },
-                {
                     "data_path": "action_result.message",
                     "data_type": "string"
                 },
-				{
+		{
                     "data_path": "action_result.summary.*.id",
                     "data_type": "numeric"
                 },
-				{
+		{
                     "data_path": "action_result.summary.*.domainId",
                     "data_type": "string"
                 },
@@ -315,41 +308,47 @@
                     "column_name": "id",
                     "column_order": 0
                 },
-				{
+		{
                     "data_path": "action_result.data.*.domainId",
                     "data_type": "string",
                     "column_name": "domainId",
                     "column_order": 1
                 },
-				{
+		{
                     "data_path": "action_result.data.*.name",
                     "data_type": "string",
                     "column_name": "name",
                     "column_order": 2
                 },
-				{
+		{
                     "data_path": "action_result.data.*.securityConcernIndex",
                     "data_type": "string",
                     "column_name": "securityConcernIndex",
                     "column_order": 3
                 },
-				{
+		{
                     "data_path": "action_result.data.*.analysis",
                     "data_type": "string",
                     "column_name": "analysis",
                     "column_order": 4
                 },
-				{
+		{
                     "data_path": "action_result.data.*.childDeviceGroups",
                     "data_type": "string",
                     "column_name": "childDeviceGroups",
                     "column_order": 5
                 },
-				{
+		{
                     "data_path": "action_result.data.*.childDevices",
                     "data_type": "string",
                     "column_name": "childDevices",
                     "column_order": 6
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 7
                 }
             ],
             "render": {
@@ -361,7 +360,7 @@
             "action": "get domain",
             "identifier": "get_domain",
             "description": "Get a domain by ID",
-            "verbose": "Get a domain by ID",
+            "verbose": "Get a domain by ID.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -381,12 +380,6 @@
                     "data_type": "numeric"
                 },
                 {
-                    "data_path": "action_result.status",
-                    "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 3
-                },
-                {
                     "data_path": "action_result.message",
                     "data_type": "string"
                 },
@@ -398,32 +391,38 @@
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
                 },
-				{
+		{
                     "data_path": "action_result.summary.*.id",
                     "data_type": "numeric"
                 },
-				{
+		{
                     "data_path": "action_result.summary.*.name",
                     "data_type": "string"
                 },
-				{
+		{
                     "data_path": "action_result.data.*.id",
                     "data_type": "string",
                     "column_name": "id",
                     "column_order": 0
                 },
-				{
+		{
                     "data_path": "action_result.data.*.name",
                     "data_type": "string",
                     "column_name": "name",
                     "column_order": 1
 
                 },
-				{
+		{
                     "data_path": "action_result.data.*.description",
                     "data_type": "string",
                     "column_name": "description",
                     "column_order": 2
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 3
                 }
             ],
             "render": {

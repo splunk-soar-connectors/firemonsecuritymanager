@@ -1,8 +1,12 @@
 # FireMon Security Manager
 Publisher: Splunk Community
+
 App Version: 1.0.0
+
 Product Vendor: FireMon
+
 Product Name: Security Manager
+
 Product Version Supported (regex): ".*"
 
 This App exposes various FireMon Security Manager API endpoints as actions
@@ -22,9 +26,13 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 
 ### Supported Actions
 [get domain](#action-get-domain) - Get a domain by ID
+
 [get devicegroup](#action-get-devicegroup) - Get a DeviceGroup by ID
+
 [remove devicegroup](#action-remove-devicegroup) - Remove a Device from a DeviceGroup
+
 [assign devicegroup](#action-assign-devicegroup) - Assign a Device to a DeviceGroup
+
 [test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration
 
 ## action: 'get domain'
