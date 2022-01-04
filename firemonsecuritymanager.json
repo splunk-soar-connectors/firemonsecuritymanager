@@ -69,7 +69,7 @@
             "identifier": "assign_devicegroup",
             "description": "Assign a Device to a DeviceGroup",
             "verbose": "Assign a Device to a DeviceGroup.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "firemon_domain_id": {
@@ -158,7 +158,7 @@
             "identifier": "remove_devicegroup",
             "description": "Remove a Device from a DeviceGroup",
             "verbose": "Remove a Device from a DeviceGroup.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": false,
             "parameters": {
                 "firemon_domain_id": {
@@ -247,7 +247,7 @@
             "identifier": "get_devicegroup",
             "description": "Get a DeviceGroup by ID",
             "verbose": "Get a DeviceGroup by ID.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": true,
             "parameters": {
                 "firemon_domain_id": {
@@ -361,7 +361,7 @@
             "identifier": "get_domain",
             "description": "Get a domain by ID",
             "verbose": "Get a domain by ID.",
-            "type": "generic",
+            "type": "investigate",
             "read_only": true,
             "parameters": {
                 "firemon_domain_id": {
