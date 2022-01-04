@@ -247,7 +247,7 @@
             "identifier": "get_devicegroup",
             "description": "Get a DeviceGroup by ID",
             "verbose": "Get a DeviceGroup by ID.",
-            "type": "investigate",
+            "type": "generic",
             "read_only": true,
             "parameters": {
                 "firemon_domain_id": {
@@ -361,7 +361,7 @@
             "identifier": "get_domain",
             "description": "Get a domain by ID",
             "verbose": "Get a domain by ID.",
-            "type": "investigate",
+            "type": "generic",
             "read_only": true,
             "parameters": {
                 "firemon_domain_id": {
