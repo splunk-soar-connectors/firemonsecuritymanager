@@ -6,7 +6,7 @@
     "product_vendor": "FireMon",
     "logo": "firemonsecuritymanager.svg",
     "logo_dark": "firemonsecuritymanager_dark.svg",
-    "product_name": "Security Manager",
+    "product_name": "Security_Manager",
     "python_version": "3",
     "product_version_regex": ".*",
     "publisher": "Splunk Community",
