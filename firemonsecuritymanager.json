@@ -1,6 +1,6 @@
 {
     "appid": "2ade0c67-7b1e-43ad-bc74-b7158688d4d0",
-    "name": "FireMon Security Manager",
+    "name": "FireMon_Security_Manager",
     "description": "This App exposes various FireMon Security Manager API endpoints as actions",
     "type": "endpoint",
     "product_vendor": "FireMon",
