@@ -1,12 +1,12 @@
 {
     "appid": "2ade0c67-7b1e-43ad-bc74-b7158688d4d0",
-    "name": "FireMon_Security_Manager",
+    "name": "FireMon Security Manager",
     "description": "This App exposes various FireMon Security Manager API endpoints as actions",
     "type": "endpoint",
     "product_vendor": "FireMon",
     "logo": "firemonsecuritymanager.svg",
     "logo_dark": "firemonsecuritymanager_dark.svg",
-    "product_name": "Security_Manager",
+    "product_name": "Security Manager",
     "python_version": "3",
     "product_version_regex": ".*",
     "publisher": "Splunk Community",
@@ -69,7 +69,7 @@
             "identifier": "assign_devicegroup",
             "description": "Assign a Device to a DeviceGroup",
             "verbose": "Assign a Device to a DeviceGroup.",
-            "type": "investigate",
+            "type": "generic",
             "read_only": false,
             "parameters": {
                 "firemon_domain_id": {
@@ -109,6 +109,12 @@
                     "data_path": "action_result.summary.*.message",
                     "data_type": "string"
                 },
+                                {
+                    "data_path": "action_result.data.*.message",
+                    "data_type": "string",
+                    "column_name": "message",
+                    "column_order": 4
+                },
                 {
                     "data_path": "summary.total_objects",
                     "data_type": "numeric"
@@ -140,12 +146,6 @@
                     "data_type": "string",
                     "column_name": "status",
                     "column_order": 3
-                },
-                                {
-                    "data_path": "action_result.data.*.message",
-                    "data_type": "string",
-                    "column_name": "message",
-                    "column_order": 4
                 }
             ],
             "render": {
@@ -158,7 +158,7 @@
             "identifier": "remove_devicegroup",
             "description": "Remove a Device from a DeviceGroup",
             "verbose": "Remove a Device from a DeviceGroup.",
-            "type": "investigate",
+            "type": "generic",
             "read_only": false,
             "parameters": {
                 "firemon_domain_id": {
