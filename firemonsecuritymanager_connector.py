@@ -1,9 +1,17 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-# -----------------------------------------
-# Phantom Firemon Security Manager App Connector python file
-# -----------------------------------------
-
+# File: firemonsecuritymanager_connector.py
+#
+# Copyright (c) 2022 Splunk Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed under
+# the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+# either express or implied. See the License for the specific language governing permissions
+# and limitations under the License.
 # Python 3 Compatibility imports
 from __future__ import print_function, unicode_literals
 
@@ -59,11 +67,14 @@ class FiremonSecurityManagerConnector(BaseConnector):
 
         try:
             soup = BeautifulSoup(response.text, "html.parser")
+            # Remove the script, style, footer and navigation part from the HTML message
+            for element in soup(["script", "style", "footer", "nav"]):
+                element.extract()
             error_text = soup.text
             split_lines = error_text.split('\n')
             split_lines = [x.strip() for x in split_lines if x.strip()]
             error_text = '\n'.join(split_lines)
-        except:
+        except Exception:
             error_text = "Cannot parse error details"
 
         message = "Status Code: {0}. Data from server:\n{1}\n".format(status_code, error_text)
@@ -183,7 +194,7 @@ class FiremonSecurityManagerConnector(BaseConnector):
         # Try to parse Firemon version
         try:
             firemon_version = response['version']
-        except:
+        except Exception:
             firemon_version = 'unable to parse version'
 
         # Return success
@@ -191,7 +202,6 @@ class FiremonSecurityManagerConnector(BaseConnector):
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _handle_assign_devicegroup(self, param):
-        # Implement the handler here
         # use self.save_progress(...) to send progress messages back to the platform
         self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
 
@@ -233,7 +243,6 @@ class FiremonSecurityManagerConnector(BaseConnector):
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _handle_remove_devicegroup(self, param):
-        # Implement the handler here
         # use self.save_progress(...) to send progress messages back to the platform
         self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
 
@@ -274,8 +283,7 @@ class FiremonSecurityManagerConnector(BaseConnector):
         # BaseConnector will create a textual message based off of the summary dictionary
         return action_result.set_status(phantom.APP_SUCCESS)
 
-    def _handle_get_devicegroup(self, param):
-        # Implement the handler here
+    def _handle_get_device_group(self, param):
         # use self.save_progress(...) to send progress messages back to the platform
         self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
 
@@ -290,7 +298,10 @@ class FiremonSecurityManagerConnector(BaseConnector):
 
         # make rest call
         ret_val, response = self._make_rest_call(
-            '/domain/' + str(firemon_domain_id) + '/devicegroup/' + str(firemon_device_group_id), action_result, params=None, headers=None
+            '/domain/' + str(firemon_domain_id) + '/devicegroup/' + str(firemon_device_group_id),
+            action_result,
+            params=None,
+            headers=None
         )
 
         if phantom.is_fail(ret_val):
@@ -313,7 +324,6 @@ class FiremonSecurityManagerConnector(BaseConnector):
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _handle_get_domain(self, param):
-        # Implement the handler here
         # use self.save_progress(...) to send progress messages back to the platform
         self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
 
@@ -327,7 +337,10 @@ class FiremonSecurityManagerConnector(BaseConnector):
 
         # make rest call
         ret_val, response = self._make_rest_call(
-            '/domain/' + str(firemon_domain_id), action_result, params=None, headers=None
+            '/domain/' + str(firemon_domain_id),
+            action_result,
+            params=None,
+            headers=None
         )
 
         if phantom.is_fail(ret_val):
@@ -365,8 +378,8 @@ class FiremonSecurityManagerConnector(BaseConnector):
         elif action_id == 'remove_devicegroup':
             ret_val = self._handle_remove_devicegroup(param)
 
-        elif action_id == 'get_devicegroup':
-            ret_val = self._handle_get_devicegroup(param)
+        elif action_id == 'get_device_group':
+            ret_val = self._handle_get_device_group(param)
 
         elif action_id == 'get_domain':
             ret_val = self._handle_get_domain(param)
