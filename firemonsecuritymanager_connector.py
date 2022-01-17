@@ -201,7 +201,7 @@ class FiremonSecurityManagerConnector(BaseConnector):
         self.save_progress("Test Connectivity Passed - Firemon version: " + str(firemon_version))
         return action_result.set_status(phantom.APP_SUCCESS)
 
-    def _handle_assign_devicegroup(self, param):
+    def _handle_assign_device_group(self, param):
         # use self.save_progress(...) to send progress messages back to the platform
         self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
 
@@ -242,7 +242,7 @@ class FiremonSecurityManagerConnector(BaseConnector):
         # BaseConnector will create a textual message based off of the summary dictionary
         return action_result.set_status(phantom.APP_SUCCESS)
 
-    def _handle_remove_devicegroup(self, param):
+    def _handle_remove_device_group(self, param):
         # use self.save_progress(...) to send progress messages back to the platform
         self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
 
@@ -372,11 +372,11 @@ class FiremonSecurityManagerConnector(BaseConnector):
         if action_id == 'test_connectivity':
             ret_val = self._handle_test_connectivity(param)
 
-        elif action_id == 'assign_devicegroup':
-            ret_val = self._handle_assign_devicegroup(param)
+        elif action_id == 'assign_device_group':
+            ret_val = self._handle_assign_device_group(param)
 
-        elif action_id == 'remove_devicegroup':
-            ret_val = self._handle_remove_devicegroup(param)
+        elif action_id == 'remove_device_group':
+            ret_val = self._handle_remove_device_group(param)
 
         elif action_id == 'get_device_group':
             ret_val = self._handle_get_device_group(param)

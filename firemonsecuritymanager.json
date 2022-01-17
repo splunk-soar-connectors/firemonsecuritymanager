@@ -60,8 +60,8 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "assign devicegroup",
-            "identifier": "assign_devicegroup",
+            "action": "assign device group",
+            "identifier": "assign_device_group",
             "description": "Assign a Device to a DeviceGroup",
             "type": "generic",
             "read_only": false,
@@ -143,8 +143,8 @@
             "versions": "EQ(*)"
         },
         {
-            "action": "remove devicegroup",
-            "identifier": "remove_devicegroup",
+            "action": "remove device group",
+            "identifier": "remove_device_group",
             "description": "Remove a Device from a DeviceGroup",
             "type": "generic",
             "read_only": false,
