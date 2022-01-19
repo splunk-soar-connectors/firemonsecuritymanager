@@ -217,7 +217,8 @@ class FiremonSecurityManagerConnector(BaseConnector):
 
         # make rest call
         ret_val, response = self._make_rest_call(
-            '/domain/' + str(firemon_domain_id) + '/devicegroup/' + str(firemon_device_group_id) + '/device/' + str(firemon_device_id),
+            '/domain/{}/devicegroup/{}/device/{}'.format(
+                str(firemon_domain_id), str(firemon_device_group_id), str(firemon_device_id)),
             action_result,
             method="post",
             params=None,
@@ -258,7 +259,8 @@ class FiremonSecurityManagerConnector(BaseConnector):
 
         # make rest call
         ret_val, response = self._make_rest_call(
-            '/domain/' + str(firemon_domain_id) + '/devicegroup/' + str(firemon_device_group_id) + '/device/' + str(firemon_device_id),
+            '/domain/{}/devicegroup/{}/device/{}'.format(
+                str(firemon_domain_id), str(firemon_device_group_id), str(firemon_device_id)),
             action_result,
             method="delete",
             params=None,
@@ -298,7 +300,7 @@ class FiremonSecurityManagerConnector(BaseConnector):
 
         # make rest call
         ret_val, response = self._make_rest_call(
-            '/domain/' + str(firemon_domain_id) + '/devicegroup/' + str(firemon_device_group_id),
+            '/domain/{}/devicegroup/{}'.format(str(firemon_domain_id), str(firemon_device_group_id)),
             action_result,
             params=None,
             headers=None
@@ -337,7 +339,7 @@ class FiremonSecurityManagerConnector(BaseConnector):
 
         # make rest call
         ret_val, response = self._make_rest_call(
-            '/domain/' + str(firemon_domain_id),
+            '/domain/{}'.format(str(firemon_domain_id)),
             action_result,
             params=None,
             headers=None
