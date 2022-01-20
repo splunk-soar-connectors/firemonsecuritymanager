@@ -16,8 +16,8 @@
         }
     ],
     "license": "Copyright (c) 2022 Splunk Inc.",
-    "app_version": "1.0.0",
-    "utctime_updated": "2021-11-24T19:07:17.062644Z",
+    "app_version": "1.0.1",
+    "utctime_updated": "2022-01-20T05:02:29.000000Z",
     "package_name": "phantom_firemonsecuritymanager",
     "main_module": "firemonsecuritymanager_connector.py",
     "min_phantom_version": "5.0.0",
