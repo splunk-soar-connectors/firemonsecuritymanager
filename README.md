@@ -208,7 +208,7 @@ action\_result\.status | string |
 ## action: 'update device'
 Update a Device
 
-Type: **investigate**  
+Type: **generic**  
 Read only: **False**
 
 #### Action Parameters
