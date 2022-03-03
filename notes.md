@@ -1,7 +1,7 @@
 # FireMon Security Manager
 Publisher: Splunk Community
 
-App Version: 1.0.0
+App Version: 1.0.2
 
 Product Vendor: FireMon
 
@@ -25,6 +25,10 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 **verify_server_cert** | required | boolean | Verify server certificate |
 
 ### Supported Actions
+[get device](#action-get-device) - Get a device by ID
+
+[update device](#action-update-device) - Update a device
+
 [get domain](#action-get-domain) - Get a domain by ID
 
 [get devicegroup](#action-get-devicegroup) - Get a DeviceGroup by ID
@@ -34,6 +38,64 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [assign devicegroup](#action-assign-devicegroup) - Assign a Device to a DeviceGroup
 
 [test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration
+
+## action: 'get device'
+Get a device by ID
+Type: **investigate**
+Read only: **True**
+Get a device by ID
+
+### Action Parameters
+
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**firemon_device_id** | required | Device ID | numeric |  |
+**firemon_domain_id** | required | Domain ID | numeric |  |
+
+### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------
+action_result.parameter.firemon_domain_id | numeric |  |  |
+action_result.parameter.firemon_device_id | numeric |  |  |
+action_result.message | string |  |  |
+action_result.summary.*.id | numeric |  |  |
+action_result.summary.*.domainid | numeric |  |  |
+action_result.summary.*.name | string |  |  |
+action_result.summary.*.description | string |  |  |
+summary.total_objects | numeric |  |  |
+summary.total_objects_successful | numeric |  |  |
+action_result.data.*.id | string |  |  |
+action_result.data.*.domainid | string |  |  |
+action_result.data.*.name | string |  |  |
+action_result.data.*.description | string |  |  |
+action_result.status | string |  |  |
+
+## action: 'update device'
+Update a device
+Type: **generic**
+Read only: **False**
+Update a device
+
+### Action Parameters
+
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**firemon_device_id** | required | Device ID | numeric |  |
+**firemon_domain_id** | required | Domain ID | numeric |  |
+**firemon_device_json** | required | device fields json for update | string |  |
+
+### Action Output
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------
+action_result.message | string |  |  |
+action_result.summary.*.message | string |  |  |
+summary.total_objects | numeric |  |  |
+summary.total_objects_successful | numeric |  |  |
+action_result.parameter.firemon_domain_id | numeric |  |  |
+action_result.parameter.firemon_device_id | numeric |  |  |
+action_result.parameter.firemon_device_json | string |  |  |
+action_result.status | string |  |  |
+action_result.data.*.message | string |  |  |
 
 ## action: 'get domain'
 Get a domain by ID
