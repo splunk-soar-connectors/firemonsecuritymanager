@@ -363,6 +363,114 @@ class FiremonSecurityManagerConnector(BaseConnector):
         # BaseConnector will create a textual message based off of the summary dictionary
         return action_result.set_status(phantom.APP_SUCCESS)
 
+    def _handle_update_device(self, param):
+        # use self.save_progress(...) to send progress messages back to the platform
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+
+        # Add an action result object to self (BaseConnector) to represent the action for this param
+        action_result = self.add_action_result(ActionResult(dict(param)))
+
+        # Access action parameters passed in the 'param' dictionary
+
+        # Required values can be accessed directly
+        firemon_domain_id = param['firemon_domain_id']
+        firemon_device_id = param['firemon_device_id']
+        firemon_device_json = param['firemon_device_json']
+
+        # make rest call to get device
+        ret_val, response = self._make_rest_call(
+            '/domain/{}/device/{}'.format(
+                str(firemon_domain_id), str(firemon_device_id)),
+            action_result,
+            method="get",
+            params=None,
+            headers=None
+        )
+
+        if phantom.is_fail(ret_val):
+            # the call to the 3rd party device or service failed, action result should contain all the error details
+            # for now the return is commented out, but after implementation, return from here
+            return action_result.get_status()
+
+        # Set update params to action_result for get device request and update device field
+        data_dict = response
+        device_dict = json.loads(firemon_device_json)
+        for key, value in device_dict.items():
+            data_dict[key] = value
+        data = json.dumps(data_dict)
+
+        headers = {'accept': '*/*', 'Content-Type': 'application/json'}
+
+        # make rest call to update device
+        ret_val, response = self._make_rest_call(
+            '/domain/{}/device/{}?manualRetrieval=true'.format(
+                str(firemon_domain_id), str(firemon_device_id)),
+            action_result,
+            method="put",
+            params=None,
+            headers=headers,
+            data=data
+        )
+
+        if phantom.is_fail(ret_val):
+            # the call to the 3rd party device or service failed, action result should contain all the error details
+            # for now the return is commented out, but after implementation, return from here
+            return action_result.get_status()
+
+        # Now post process the data,  uncomment code as you deem fit
+
+        # Add the response into the data section
+        action_result.add_data(response)
+
+        # Add a dictionary that is made up of the most important values from data into the summary
+        summary = action_result.update_summary({})
+        summary['message'] = response['message']
+
+        # Return success, no need to set the message, only the status
+        # BaseConnector will create a textual message based off of the summary dictionary
+        return action_result.set_status(phantom.APP_SUCCESS)
+
+    def _handle_get_device(self, param):
+        # use self.save_progress(...) to send progress messages back to the platform
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+
+        # Add an action result object to self (BaseConnector) to represent the action for this param
+        action_result = self.add_action_result(ActionResult(dict(param)))
+
+        # Access action parameters passed in the 'param' dictionary
+
+        # Required values can be accessed directly
+        firemon_domain_id = param['firemon_domain_id']
+        firemon_device_id = param['firemon_device_id']
+
+        # make rest call
+        ret_val, response = self._make_rest_call(
+            '/domain/{}/device/{}'.format(str(firemon_domain_id), str(firemon_device_id)),
+            action_result,
+            params=None,
+            headers=None
+        )
+
+        if phantom.is_fail(ret_val):
+            # the call to the 3rd party device or service failed, action result should contain all the error details
+            return action_result.get_status()
+
+        # Now post process the data,  uncomment code as you deem fit
+
+        # Add the response into the data section
+        action_result.add_data(response)
+
+        # Add a dictionary that is made up of the most important values from data into the summary
+        summary = action_result.update_summary({})
+        summary['id'] = response['id']
+        summary['domainId'] = response['domainId']
+        summary['name'] = response['name']
+        summary['description'] = response['description']
+
+        # Return success, no need to set the message, only the status
+        # BaseConnector will create a textual message based off of the summary dictionary
+        return action_result.set_status(phantom.APP_SUCCESS)
+
     def handle_action(self, param):
         ret_val = phantom.APP_SUCCESS
 
@@ -385,6 +493,12 @@ class FiremonSecurityManagerConnector(BaseConnector):
 
         elif action_id == 'get_domain':
             ret_val = self._handle_get_domain(param)
+
+        elif action_id == 'update_device':
+            ret_val = self._handle_update_device(param)
+
+        elif action_id == 'get_device':
+            ret_val = self._handle_get_device(param)
 
         return ret_val
 
