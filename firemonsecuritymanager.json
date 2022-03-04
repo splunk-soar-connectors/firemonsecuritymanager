@@ -466,7 +466,7 @@
                 },
                 {
                     "data_path": "action_result.parameter.firemon_device_json",
-                    "data_type": "numeric",
+                    "data_type": "string",
                     "column_name": "Firemon Device JSON",
                     "column_order": 2
                 },
@@ -531,7 +531,7 @@
                 },
                 {
                     "data_path": "action_result.summary.*.domainId",
-                    "data_type": "string"
+                    "data_type": "numeric"
                 },
                 {
                     "data_path": "action_result.summary.*.name",
