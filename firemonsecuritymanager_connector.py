@@ -163,9 +163,11 @@ class FiremonSecurityManagerConnector(BaseConnector):
                 **kwargs
             )
         except Exception as e:
+            err_msg = "Error Connecting to server. Details: {0}".format(str(e))
+            self.error_print(err_msg)
             return RetVal(
                 action_result.set_status(
-                    phantom.APP_ERROR, "Error Connecting to server. Details: {0}".format(str(e))
+                    phantom.APP_ERROR, err_msg
                 ), resp_json
             )
 
