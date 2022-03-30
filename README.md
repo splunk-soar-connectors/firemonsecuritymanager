@@ -2,11 +2,11 @@
 # FireMon Security Manager
 
 Publisher: Splunk Community  
-Connector Version: 1\.0\.1  
+Connector Version: 1\.1\.0  
 Product Vendor: FireMon  
 Product Name: Security Manager  
 Product Version Supported (regex): "\.\*"  
-Minimum Product Version: 5\.0\.0  
+Minimum Product Version: 5\.1\.0  
 
 This App exposes various FireMon Security Manager API endpoints as actions
 
@@ -49,6 +49,8 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [remove device group](#action-remove-device-group) - Remove a Device from a DeviceGroup  
 [get device group](#action-get-device-group) - Get a DeviceGroup by ID  
 [get domain](#action-get-domain) - Get a domain by ID  
+[update device](#action-update-device) - Update a device  
+[get device](#action-get-device) - Get a Device by ID  
 
 ## action: 'test connectivity'
 Validate the asset configuration for connectivity using supplied configuration
@@ -169,6 +171,62 @@ summary\.total\_objects\_successful | numeric |
 action\_result\.summary\.\*\.id | numeric | 
 action\_result\.summary\.\*\.name | string | 
 action\_result\.data\.\*\.id | string | 
+action\_result\.data\.\*\.name | string | 
+action\_result\.data\.\*\.description | string | 
+action\_result\.status | string |   
+
+## action: 'update device'
+Update a device
+
+Type: **generic**  
+Read only: **False**
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**firemon\_domain\_id** |  required  | Domain ID | numeric | 
+**firemon\_device\_id** |  required  | Device ID | numeric | 
+**firemon\_device\_json** |  required  | Device fields json for update | string | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS
+--------- | ---- | --------
+action\_result\.message | string | 
+action\_result\.summary\.\*\.message | string | 
+summary\.total\_objects | numeric | 
+summary\.total\_objects\_successful | numeric | 
+action\_result\.parameter\.firemon\_domain\_id | numeric | 
+action\_result\.parameter\.firemon\_device\_id | numeric | 
+action\_result\.parameter\.firemon\_device\_json | string | 
+action\_result\.status | string | 
+action\_result\.data\.\*\.message | string |   
+
+## action: 'get device'
+Get a Device by ID
+
+Type: **investigate**  
+Read only: **True**
+
+#### Action Parameters
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**firemon\_domain\_id** |  required  | Domain ID | numeric | 
+**firemon\_device\_id** |  required  | Device ID | numeric | 
+
+#### Action Output
+DATA PATH | TYPE | CONTAINS
+--------- | ---- | --------
+action\_result\.parameter\.firemon\_domain\_id | numeric | 
+action\_result\.parameter\.firemon\_device\_id | numeric | 
+action\_result\.message | string | 
+action\_result\.summary\.\*\.id | numeric | 
+action\_result\.summary\.\*\.domainId | numeric | 
+action\_result\.summary\.\*\.name | string | 
+action\_result\.summary\.\*\.description | string | 
+summary\.total\_objects | numeric | 
+summary\.total\_objects\_successful | numeric | 
+action\_result\.data\.\*\.id | string | 
+action\_result\.data\.\*\.domainId | string | 
 action\_result\.data\.\*\.name | string | 
 action\_result\.data\.\*\.description | string | 
 action\_result\.status | string | 
