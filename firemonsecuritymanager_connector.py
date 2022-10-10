@@ -378,6 +378,7 @@ class FiremonSecurityManagerConnector(BaseConnector):
         firemon_domain_id = param['firemon_domain_id']
         firemon_device_id = param['firemon_device_id']
         firemon_device_json = param['firemon_device_json']
+        firemon_manual_retrieval = param['firemon_manual_retrieval']
 
         # make rest call to get device
         ret_val, response = self._make_rest_call(
@@ -405,8 +406,8 @@ class FiremonSecurityManagerConnector(BaseConnector):
 
         # make rest call to update device
         ret_val, response = self._make_rest_call(
-            '/domain/{}/device/{}?manualRetrieval=true'.format(
-                str(firemon_domain_id), str(firemon_device_id)),
+            '/domain/{}/device/{}?manualRetrieval={}'.format(
+                str(firemon_domain_id), str(firemon_device_id), str(firemon_manual_retrieval)),
             action_result,
             method="put",
             params=None,

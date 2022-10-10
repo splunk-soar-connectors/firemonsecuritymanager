@@ -2,11 +2,11 @@
 # FireMon Security Manager
 
 Publisher: Splunk Community  
-Connector Version: 1\.1\.0  
+Connector Version: 2\.0\.0  
 Product Vendor: FireMon  
 Product Name: Security Manager  
 Product Version Supported (regex): "\.\*"  
-Minimum Product Version: 5\.1\.0  
+Minimum Product Version: 5\.3\.4  
 
 This App exposes various FireMon Security Manager API endpoints as actions
 
@@ -187,6 +187,7 @@ PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
 **firemon\_domain\_id** |  required  | Domain ID | numeric | 
 **firemon\_device\_id** |  required  | Device ID | numeric | 
 **firemon\_device\_json** |  required  | Device fields json for update | string | 
+**firemon\_manual\_retrieval** |  required  | Manual retrieval | string | 
 
 #### Action Output
 DATA PATH | TYPE | CONTAINS
@@ -198,6 +199,7 @@ summary\.total\_objects\_successful | numeric |
 action\_result\.parameter\.firemon\_domain\_id | numeric | 
 action\_result\.parameter\.firemon\_device\_id | numeric | 
 action\_result\.parameter\.firemon\_device\_json | string | 
+action\_result\.parameter\.firemon\_manual\_retrieval | string | 
 action\_result\.status | string | 
 action\_result\.data\.\*\.message | string |   
 
