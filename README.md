@@ -2,11 +2,11 @@
 # FireMon Security Manager
 
 Publisher: Splunk Community  
-Connector Version: 1\.1\.0  
+Connector Version: 2\.0\.0  
 Product Vendor: FireMon  
 Product Name: Security Manager  
 Product Version Supported (regex): "\.\*"  
-Minimum Product Version: 5\.1\.0  
+Minimum Product Version: 5\.3\.4  
 
 This App exposes various FireMon Security Manager API endpoints as actions
 
