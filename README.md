@@ -1,7 +1,7 @@
 # FireMon Security Manager
 
 Publisher: Splunk Community \
-Connector Version: 2.0.0 \
+Connector Version: 2.0.1 \
 Product Vendor: FireMon \
 Product Name: Security Manager \
 Minimum Product Version: 5.3.4
