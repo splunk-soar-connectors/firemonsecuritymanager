@@ -1,12 +1,16 @@
 # FireMon Security Manager
 
-Publisher: Splunk Community \
-Connector Version: 2.0.1 \
-Product Vendor: FireMon \
-Product Name: Security Manager \
+Publisher: Splunk Community <br>
+Connector Version: 2.0.1 <br>
+Product Vendor: FireMon <br>
+Product Name: Security Manager <br>
 Minimum Product Version: 5.3.4
 
 This App exposes various FireMon Security Manager API endpoints as actions
+
+TLS certificate verification is enabled by default. Install a CA-issued certificate on the
+appliance or add its issuing certificate to the SOAR trust store before connecting; disable
+verification only when an administrator has explicitly accepted that risk.
 
 ### Configuration variables
 
@@ -21,19 +25,19 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 
 ### Supported Actions
 
-[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration \
-[assign device group](#action-assign-device-group) - Assign a Device to a DeviceGroup \
-[remove device group](#action-remove-device-group) - Remove a Device from a DeviceGroup \
-[get device group](#action-get-device-group) - Get a DeviceGroup by ID \
-[get domain](#action-get-domain) - Get a domain by ID \
-[update device](#action-update-device) - Update a device \
+[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration <br>
+[assign device group](#action-assign-device-group) - Assign a Device to a DeviceGroup <br>
+[remove device group](#action-remove-device-group) - Remove a Device from a DeviceGroup <br>
+[get device group](#action-get-device-group) - Get a DeviceGroup by ID <br>
+[get domain](#action-get-domain) - Get a domain by ID <br>
+[update device](#action-update-device) - Update a device <br>
 [get device](#action-get-device) - Get a Device by ID
 
 ## action: 'test connectivity'
 
 Validate the asset configuration for connectivity using supplied configuration
 
-Type: **test** \
+Type: **test** <br>
 Read only: **True**
 
 The Firemon API version endpoint is used for the test connectivity action.
@@ -50,7 +54,7 @@ No Output
 
 Assign a Device to a DeviceGroup
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 #### Action Parameters
@@ -79,7 +83,7 @@ action_result.data.\*.message | string | | |
 
 Remove a Device from a DeviceGroup
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 #### Action Parameters
@@ -108,7 +112,7 @@ action_result.data.\*.message | string | | |
 
 Get a DeviceGroup by ID
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -143,7 +147,7 @@ action_result.status | string | | success failed |
 
 Get a domain by ID
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -171,7 +175,7 @@ action_result.status | string | | success failed |
 
 Update a device
 
-Type: **generic** \
+Type: **generic** <br>
 Read only: **False**
 
 #### Action Parameters
@@ -202,7 +206,7 @@ action_result.data.\*.message | string | | |
 
 Get a Device by ID
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -235,7 +239,7 @@ ______________________________________________________________________
 
 Auto-generated Splunk SOAR Connector documentation.
 
-Copyright 2025 Splunk Inc.
+Copyright 2026 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
