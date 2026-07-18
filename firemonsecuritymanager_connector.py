@@ -528,7 +528,7 @@ class FiremonSecurityManagerConnector(BaseConnector):
         self._test_url = "/version"
         self._username = config["username"]
         self._password = config["password"]
-        self._verify_server_cert = config["verify_server_cert"]
+        self._verify_server_cert = config.get("verify_server_cert", True)
 
         return phantom.APP_SUCCESS
 
