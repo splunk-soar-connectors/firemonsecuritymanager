@@ -1,6 +1,6 @@
 # File: firemonsecuritymanager_connector.py
 #
-# Copyright (c) 2022-2025 Splunk Inc.
+# Copyright (c) 2022-2026 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -45,6 +45,22 @@ class FiremonSecurityManagerConnector(BaseConnector):
         self._username = None
         self._password = None
         self._verify_server_cert = None
+
+    @staticmethod
+    def _get_nonnegative_integer(param, key, action_result):
+        value = param[key]
+        if isinstance(value, bool):
+            return RetVal(action_result.set_status(phantom.APP_ERROR, f"Parameter '{key}' must be a non-negative integer"), None)
+
+        try:
+            value = int(value)
+        except (TypeError, ValueError):
+            return RetVal(action_result.set_status(phantom.APP_ERROR, f"Parameter '{key}' must be a non-negative integer"), None)
+
+        if value < 0:
+            return RetVal(action_result.set_status(phantom.APP_ERROR, f"Parameter '{key}' must be a non-negative integer"), None)
+
+        return RetVal(phantom.APP_SUCCESS, value)
 
     def _process_empty_response(self, response, action_result):
         if response.status_code == 204:
@@ -192,9 +208,15 @@ class FiremonSecurityManagerConnector(BaseConnector):
         # Access action parameters passed in the 'param' dictionary
 
         # Required values can be accessed directly
-        firemon_domain_id = param["firemon_domain_id"]
-        firemon_device_group_id = param["firemon_device_group_id"]
-        firemon_device_id = param["firemon_device_id"]
+        ret_val, firemon_domain_id = self._get_nonnegative_integer(param, "firemon_domain_id", action_result)
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
+        ret_val, firemon_device_group_id = self._get_nonnegative_integer(param, "firemon_device_group_id", action_result)
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
+        ret_val, firemon_device_id = self._get_nonnegative_integer(param, "firemon_device_id", action_result)
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
 
         # make rest call
         ret_val, response = self._make_rest_call(
@@ -233,9 +255,15 @@ class FiremonSecurityManagerConnector(BaseConnector):
         # Access action parameters passed in the 'param' dictionary
 
         # Required values can be accessed directly
-        firemon_domain_id = param["firemon_domain_id"]
-        firemon_device_group_id = param["firemon_device_group_id"]
-        firemon_device_id = param["firemon_device_id"]
+        ret_val, firemon_domain_id = self._get_nonnegative_integer(param, "firemon_domain_id", action_result)
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
+        ret_val, firemon_device_group_id = self._get_nonnegative_integer(param, "firemon_device_group_id", action_result)
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
+        ret_val, firemon_device_id = self._get_nonnegative_integer(param, "firemon_device_id", action_result)
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
 
         # make rest call
         ret_val, response = self._make_rest_call(
@@ -274,8 +302,12 @@ class FiremonSecurityManagerConnector(BaseConnector):
         # Access action parameters passed in the 'param' dictionary
 
         # Required values can be accessed directly
-        firemon_domain_id = param["firemon_domain_id"]
-        firemon_device_group_id = param["firemon_device_group_id"]
+        ret_val, firemon_domain_id = self._get_nonnegative_integer(param, "firemon_domain_id", action_result)
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
+        ret_val, firemon_device_group_id = self._get_nonnegative_integer(param, "firemon_device_group_id", action_result)
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
 
         # make rest call
         ret_val, response = self._make_rest_call(
@@ -311,7 +343,9 @@ class FiremonSecurityManagerConnector(BaseConnector):
         # Access action parameters passed in the 'param' dictionary
 
         # Required values can be accessed directly
-        firemon_domain_id = param["firemon_domain_id"]
+        ret_val, firemon_domain_id = self._get_nonnegative_integer(param, "firemon_domain_id", action_result)
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
 
         # make rest call
         ret_val, response = self._make_rest_call(f"/domain/{firemon_domain_id!s}", action_result, params=None, headers=None)
@@ -344,8 +378,12 @@ class FiremonSecurityManagerConnector(BaseConnector):
         # Access action parameters passed in the 'param' dictionary
 
         # Required values can be accessed directly
-        firemon_domain_id = param["firemon_domain_id"]
-        firemon_device_id = param["firemon_device_id"]
+        ret_val, firemon_domain_id = self._get_nonnegative_integer(param, "firemon_domain_id", action_result)
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
+        ret_val, firemon_device_id = self._get_nonnegative_integer(param, "firemon_device_id", action_result)
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
         firemon_device_json = param["firemon_device_json"]
         firemon_manual_retrieval = param["firemon_manual_retrieval"]
 
@@ -406,8 +444,12 @@ class FiremonSecurityManagerConnector(BaseConnector):
         # Access action parameters passed in the 'param' dictionary
 
         # Required values can be accessed directly
-        firemon_domain_id = param["firemon_domain_id"]
-        firemon_device_id = param["firemon_device_id"]
+        ret_val, firemon_domain_id = self._get_nonnegative_integer(param, "firemon_domain_id", action_result)
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
+        ret_val, firemon_device_id = self._get_nonnegative_integer(param, "firemon_device_id", action_result)
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
 
         # make rest call
         ret_val, response = self._make_rest_call(
@@ -486,7 +528,7 @@ class FiremonSecurityManagerConnector(BaseConnector):
         self._test_url = "/version"
         self._username = config["username"]
         self._password = config["password"]
-        self._verify_server_cert = config["verify_server_cert"]
+        self._verify_server_cert = config.get("verify_server_cert", True)
 
         return phantom.APP_SUCCESS
 

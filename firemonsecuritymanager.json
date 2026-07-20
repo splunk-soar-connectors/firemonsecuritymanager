@@ -7,7 +7,7 @@
     "logo": "logo_firemonsecuritymanager.svg",
     "logo_dark": "logo_firemonsecuritymanager_dark.svg",
     "product_name": "Security Manager",
-    "python_version": "3",
+    "python_version": "3.9, 3.13",
     "product_version_regex": ".*",
     "publisher": "Splunk Community",
     "contributors": [
@@ -15,7 +15,7 @@
             "name": "Jeff Berry"
         }
     ],
-    "license": "Copyright (c) 2022-2025 Splunk Inc.",
+    "license": "Copyright (c) 2022-2026 Splunk Inc.",
     "app_version": "2.0.1",
     "utctime_updated": "2025-04-28T20:02:23.573282Z",
     "package_name": "phantom_firemonsecuritymanager",
@@ -44,7 +44,7 @@
         "verify_server_cert": {
             "description": "Verify server certificate",
             "data_type": "boolean",
-            "default": false,
+            "default": true,
             "order": 3
         }
     },
@@ -613,6 +613,14 @@
         }
     ],
     "pip39_dependencies": {
+        "wheel": [
+            {
+                "module": "chardet",
+                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
+            }
+        ]
+    },
+    "pip313_dependencies": {
         "wheel": [
             {
                 "module": "chardet",
